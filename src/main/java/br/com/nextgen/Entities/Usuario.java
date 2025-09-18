@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import br.com.nextgen.Entities.Talhao;
 
 @Entity
 @Data
@@ -45,5 +46,10 @@ public class Usuario {
 			message = "A senha deve conter ao menos: uma letra maiúscula, uma letra minúscula, um número e um caractere especial"
 			)
 	private String senha;
+
+    // fk com talhao (relação one to one) fazer
+    //@OneToOne(optional=false, mappedBy="usuario")
+    //public Talhao getTalhao() { return getTalhao(); }
+
 
 }

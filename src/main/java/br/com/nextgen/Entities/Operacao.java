@@ -17,25 +17,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Operacao {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotBlank(message = "O operação é um campo de preenchimento obrigatório")
-	@NotNull(message = "O operação é um campo de preenchimento obrigatório")
-	private String operacao;
-	
-	@NotBlank(message = "O agente é um campo de preenchimento obrigatório")
-	@NotNull(message = "O agente é um campo de preenchimento obrigatório")
-	@Size(max = 25)
-	private String agente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotBlank(message = "A data e a hora são um campo de preenchimento obrigatório")
-	@NotNull(message = "A data e a hora são um campo de preenchimento obrigatório")
-	private LocalDateTime dataHora;
+    @NotBlank(message = "O operação é um campo de preenchimento obrigatório")
+    // @NotNull é redundante com @NotBlank, que já inclui a verificação de nulo.
+    private String operacao;
 
-	@NotBlank(message = "O talhao é um campo de preenchimento obrigatório")
-	@NotNull(message = "O talhao é um campo de preenchimento obrigatório")
-	@ManyToMany(mappedBy = "operacao")
-	private List<Talhao> talhao;
+    @NotBlank(message = "O agente é um campo de preenchimento obrigatório")
+    @Size(max = 25)
+    private String agente;
+
+    // CORREÇÃO: Removido @NotBlank, pois dataHora não é uma String.
+    @NotNull(message = "A data e a hora são um campo de preenchimento obrigatório")
+    private LocalDateTime dataHora;
+
+    // As anotações de validação para a lista de Talhao não são necessárias aqui, pois a validação deve ser feita no serviço.
+    @ManyToMany(mappedBy = "operacao")
+    private List<Talhao> talhao;
 }
