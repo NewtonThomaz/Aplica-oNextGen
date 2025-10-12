@@ -1,22 +1,35 @@
 package br.com.nextgen.Entities;
 
 import java.util.List;
-import jakarta.persistence.*;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SQLDelete(sql = "UPDATE talhao SET ativo = false WHERE id=?")
-@Where(clause = "ativo = true")
+@SQLRestriction("ativo = true")
 public class Talhao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +53,8 @@ public class Talhao {
     @Column(columnDefinition = "boolean default true")
     private boolean ativo = true;
 
-    @OneToOne @MapsId
+    @OneToOne 
+    @MapsId
     private Usuario usuario_id;
 
     @ManyToMany
@@ -66,4 +80,12 @@ public class Talhao {
             joinColumns = @JoinColumn(name = "id-talhao"),
             inverseJoinColumns = @JoinColumn(name = "id-umidade"))
     private List<Umidade> umidade;
+    @ManyToMany
+    @JoinTable(name = "talhao/temperatura",
+            joinColumns = @JoinColumn(name = "id-talhao"),
+            inverseJoinColumns = @JoinColumn(name = "id-temperatura"))
+    private List<Temperatura> temperatura;
 }
+
+
+

@@ -1,13 +1,12 @@
 package br.com.nextgen.Services;
 
-import br.com.nextgen.Entities.Talhao;
-import br.com.nextgen.Entities.Usuario;
-import br.com.nextgen.Repository.TalhaoRepository;
-import br.com.nextgen.Repository.UsuarioRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.nextgen.Entities.Usuario;
+import br.com.nextgen.Repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {

@@ -1,8 +1,8 @@
 package br.com.nextgen.Repository;
 
-import br.com.nextgen.Entities.Operacao;
-import br.com.nextgen.Entities.Talhao;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.nextgen.Entities.Operacao;
 
 public interface OperacaoRepository extends JpaRepository<Operacao, Long> {
 }

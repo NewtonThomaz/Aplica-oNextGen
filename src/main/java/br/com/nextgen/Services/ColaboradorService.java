@@ -1,12 +1,12 @@
 package br.com.nextgen.Services;
 
-import br.com.nextgen.Entities.Colaborador;
-import br.com.nextgen.Repository.ColaboradorRepository;
-import lombok.Data;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.nextgen.Entities.Colaborador;
+import br.com.nextgen.Repository.ColaboradorRepository;
 
 @Service
 public class ColaboradorService {
