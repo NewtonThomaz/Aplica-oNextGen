@@ -1,11 +1,11 @@
-# Etapa 1: Build (compila o projeto)
-FROM eclipse-temurin:21-jdk AS builder
+# Etapa 1: Build (usando JDK 17)
+FROM eclipse-temurin:17-jdk AS builder
 WORKDIR /app
 COPY . .
 RUN ./mvnw clean package -DskipTests
 
-# Etapa 2: Runtime (roda apenas o .jar gerado)
-FROM eclipse-temurin:21-jdk
+# Etapa 2: Runtime (usando JDK 17)
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 
